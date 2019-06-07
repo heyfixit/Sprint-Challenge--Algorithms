@@ -24,8 +24,10 @@ Pseudocode / Plain English Solution:
 1) Given a list of floors from 0 to n, go to the middle floor and drop an egg.
 2) if the egg breaks, do it again but with floors 0 to the current floor. (set n to the previous middle floor)
 3) if the egg doesn't break, do it again but with the current floor as the minimum floor and n as the highest floor.
-4) repeat this process until you run out of floors to test.
-5) if the final floor breaks the egg, then that's the minimum break height.
-6) if the final floor doesn't break the egg, then the minimum break height is a floor higher (if that floor exists)
+4) the 'middle floor' is the result of: `(number of remaining floors) // 2`, so for any results with decimals, drop the
+numbers after the decimal.
+5) repeat this process until you run out of floors to test.
+6) if the final floor breaks the egg, then that's the minimum break height.
+7) if the final floor doesn't break the egg, then the minimum break height is a floor higher (if that floor exists)
 otherwise we don't know what the minimum break height is.
 
