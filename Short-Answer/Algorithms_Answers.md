@@ -5,8 +5,8 @@ Add your answers to the Algorithms exercises here.
 a) O(n).  At first glance, it seems like O(n^3) but the loop stops at n^3 and steps by n^2 so it seems like it will
 always run n times no matter the value of n.
 
-b) O(n^4).  Each nested loop seems like O(n) and for nested loops, we multiply the order.  4 levels of nesting, each
-being O(n) gives us O(n*n*n*n) or O(n^4).
+b) O(n^3).  The last nested loop at first glance seems like another O(n), making this O(n^4), but we can see the range
+starts at k and goes to 10 + k.  That's actually an O(c), so the entire thing ends up being O(n^3).
 
 c) O(n).  This function calls itself n times unless you give it a value less than 0, at which point it might call itself infinity times.
 
