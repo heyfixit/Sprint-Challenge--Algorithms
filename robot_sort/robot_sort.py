@@ -97,7 +97,96 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+
+        # assume list is sorted if we can't move right
+        if not self.can_move_right():
+            return
+
+        # start by picking up an item
+        self.swap_item()
+
+        # also turn our light on to indicate an initial change
+        self.set_light_on()
+
+        # while(self.light_is_on()):
+        while(True):
+            # print(self._list)
+            # print("Holding: ", self._item, " ", self.light_is_on())
+            # input()
+
+            # if not self.can_move_left() and self.light_is_on():
+            #     # new iteration
+            #     self.set_light_off()
+
+            # # start with light off
+            # self.set_light_off()
+
+            if not self.can_move_right():
+                if not self.light_is_on():
+                    # we've been through without changing anything
+                    # we're holding the final number
+                    # swap it back, pick up None
+                    # and we're done
+                    self.swap_item()
+                    break
+
+                self.set_light_off()
+                # swap the item back with none
+                self.swap_item()
+
+                # move to the start
+                while(self.can_move_left()):
+                    self.move_left()
+
+                # pick up the first item again
+                self.swap_item()
+                continue
+
+
+            # OK, here's where we do some comparisons
+            # and we have none on the left
+            self.move_right()
+
+            if self.compare_item() == 1:
+                # print("Item in hand bigger!")
+                # swap it
+                self.swap_item()
+                # move left
+                self.move_left()
+                # pick up none
+                self.swap_item()
+                # move right
+                self.move_right()
+                # plop none down
+                self.swap_item()
+
+                # say we've made a change
+                self.set_light_on()
+                continue
+
+            if self.compare_item() == -1 or self.compare_item() == 0:
+                # print("Item is smaller or equal")
+                # move left
+                self.move_left()
+                # pick up none
+                self.swap_item()
+                # move right
+                self.move_right()
+                # plop none down
+                self.swap_item()
+
+                # no change made here
+                continue
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
@@ -105,6 +194,7 @@ if __name__ == "__main__":
     # with `python robot_sort.py`
 
     l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    # l = [1, 4, 10, 15, 41, 20, 10]
 
     robot = SortingRobot(l)
 
